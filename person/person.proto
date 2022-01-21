@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package person;
+
+option go_package = "grpc-sample/person";
+
+service PersonService {
+  rpc GetAll (Empty) returns (AllPerson) {}
+  rpc Get(Id) returns (Person) {}
+  rpc New(Person) returns (Empty) {}
+  rpc Update(Person) returns (Empty) {}
+  rpc Delete(Id) returns (Empty) {}
+}
+message Empty {}
+
+message Person {
+  int32 id = 1;
+  string name = 2;
+  int32 age = 3;
+}
+
+message AllPerson {
+  repeated Person people = 1;
+}
+
+message Id {
+  int32 value = 1;
+}
